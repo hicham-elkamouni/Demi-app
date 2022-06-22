@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import tw from "twrnc";
 import { useState } from "react";
-import { CardFood } from "../components/CardFood";
 import { WebView } from "react-native-webview";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";

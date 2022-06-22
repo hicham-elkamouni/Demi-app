@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import tw from "twrnc";
 import { useState } from "react";
-import { CardFood } from "../components/CardFood";
 import { WebView } from "react-native-webview";
 import { useDispatch } from "react-redux";
 import { addPrice, addToCart } from "../app/features/cart/cartSlice";

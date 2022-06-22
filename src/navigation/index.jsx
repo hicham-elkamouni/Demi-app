@@ -21,6 +21,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Auth } from "../screens/Auth";
 import AddPost from "../screens/AddPost";
+import { Welcome } from "../screens/Welcome";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -124,7 +125,8 @@ function RootNavigator() {
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
-        options={{ headerShown: false }}
+        options={{ headerShown: false
+        }}
       />
       <Stack.Screen
         name="AddPost"
@@ -135,12 +137,12 @@ function RootNavigator() {
   );
 }
 
-function RegisterNavigation() {
+function Connexion() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Food"
-        component={Food}
+        name="welcome"
+        component={Welcome}
         options={{ headerShown: false }}
       />
       <Stack.Screen
