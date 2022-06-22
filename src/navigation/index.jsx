@@ -123,15 +123,20 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Root"
-        component={BottomTabNavigator}
-        options={{ headerShown: false
-        }}
+        name="Connexion"
+        component={Connexion}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="AddPost"
         component={AddPost}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Root"
+        component={BottomTabNavigator}
+        options={{ headerShown: false
+        }}
       />
     </Stack.Navigator>
   );
