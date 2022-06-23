@@ -21,35 +21,34 @@ export const BloodContainer = ({item}) => {
         setCheckedMinus(!checkedMinus)
     }
 
-
-                    return(
-                        <View
-                        
-                        style={[tw`my-1 w-[46%] p-2 items-center rounded-lg rounded-lg`,{backgroundColor :'#fff'}]}
-                        >
-                            <View
-                            style={[tw`flex-row`]}
-                            >
-                            <CheckBox
-                            checked={checkedPlus}
-                            onPress={onPressPlus}
-                            checkedColor={COLORS.primary}
-                            />
-                            <Text>{item} +</Text>
-                                </View>
-                            <View
-                            style={[tw`flex-row`]}
-                            
-                            >
-                            <CheckBox
-                            checked={checkedMinus}
-                            onPress={onPressMinus}
-                            checkedColor={COLORS.primary}
-                            />
-                            <Text>{item} -</Text>
-                            </View>
-                        </View>
-                    )
+        return(
+            <View
+            
+            style={[tw`my-1 w-[46%] p-2 items-center rounded-lg rounded-lg`,{backgroundColor :'#fff'}]}
+            >
+                <View
+                style={[tw`flex-row`]}
+                >
+                <CheckBox
+                checked={checkedPlus}
+                onPress={onPressPlus}
+                checkedColor={COLORS.primary}
+                />
+                <Text>{item} +</Text>
+                    </View>
+                <View
+                style={[tw`flex-row`]}
+                
+                >
+                <CheckBox
+                checked={checkedMinus}
+                onPress={onPressMinus}
+                checkedColor={COLORS.primary}
+                />
+                <Text>{item} -</Text>
+                </View>
+            </View>
+        )
 
                 }
 
