@@ -21,7 +21,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Auth } from "../screens/Auth";
 import AddPost from "../screens/AddPost";
-import { Welcome } from "../screens/Welcome";
+import { Welcome , SignIn, SignUp } from "../screens/Auth";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -151,8 +151,13 @@ function Connexion() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="FoodInfo"
-        component={FoodInfo}
+        name="SignIn"
+        component={SignIn}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
