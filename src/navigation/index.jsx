@@ -21,7 +21,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Auth } from "../screens/Auth";
 import AddPost from "../screens/AddPost";
-import { Welcome , SignIn, SignUp } from "../screens/Auth";
+import { Welcome , SignIn, SignUp } from "../screens/Connexion/Index";
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -135,8 +135,7 @@ function RootNavigator() {
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
-        options={{ headerShown: false
-        }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
