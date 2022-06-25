@@ -8,7 +8,7 @@ export const COLORS = {
   black: "#000",
   green: "#00b300",
   red: "#ef4444",
-  pink: "#ff0099",
+  gray: "#4b5563",
 };
 
 export const SHADOW = {
