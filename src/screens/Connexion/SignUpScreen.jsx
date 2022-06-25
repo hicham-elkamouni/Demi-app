@@ -1,12 +1,12 @@
 import { View, Text, Button } from 'react-native'
-import React from 'react'
+import { useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import tw from 'twrnc'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native';
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import { TextInput} from 'react-native-paper'
+import { Divider } from 'react-native-paper'
 import { COLORS } from '../../constants/theme'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useNavigation } from '@react-navigation/native';
@@ -45,6 +45,9 @@ export const SignUp = () => {
   }
 
 
+  // useEffect(() => {
+  //   console.log(values);
+  // })
 
   return (
     
@@ -66,9 +69,8 @@ export const SignUp = () => {
               <View style={tw`h-2 w-3 rounded bg-gray-400`}></View>
             </View>
           </View>
-        {/* <KeyboardAwareScrollView> */}
 
-          <View style={tw`mb-4`}>
+          <View style={tw``}>
           {/* FORMIK SECTION */}
 
           <Formik
@@ -84,11 +86,14 @@ export const SignUp = () => {
                 <KeyboardAwareScrollView enableOnAndroid={true}>
                   
                   <SignUpForm handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched}></SignUpForm>
-
-                  <View style={tw`flex items-center mt-14`}>
-                    <TouchableOpacity style={tw`w-full bg-red-400 p-4 flex items-center rounded-md`} onPress={() => handleSubmit}>
+                  <View style={tw`flex items-center mt-8`}>
+                    <TouchableOpacity style={tw`w-full bg-red-400 p-4 flex items-center rounded-md`} onPress={handleSubmit}>
                       <Text style={tw`text-md text-white w-full text-center`}>Sign Up!</Text>
                     </TouchableOpacity>
+                  </View>
+                  <Divider style={tw`my-6`}></Divider>
+                  <View>
+                    <Text style={tw`text-center text-gray-700`}>Already have an account? <Text style={[tw`text-red-400 `, {fontWeight : "bold"}]} onPress={() => navigation.navigate('SignIn')}>Login</Text></Text>
                   </View>
                 </KeyboardAwareScrollView>
               </>
@@ -96,7 +101,6 @@ export const SignUp = () => {
           
             </Formik>
           </View>
-        {/* </KeyboardAwareScrollView> */}
         </View>
       </View>
     </SafeAreaView>
