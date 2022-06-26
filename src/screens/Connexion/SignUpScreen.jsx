@@ -11,10 +11,14 @@ import { COLORS } from '../../constants/theme'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useNavigation } from '@react-navigation/native';
 import { SignUpForm } from '../../components/SignUpForm';
+import { useRegisterMutation } from '../../app/features/donator/donatorApi';
 
 export const SignUp = () => {
 
   const navigation = useNavigation();
+
+  // apis
+  const [register, { data, loading, error }] = useRegisterMutation();
 
   const validationSchema = yup.object().shape({
     fullName : yup.string()
@@ -27,21 +31,28 @@ export const SignUp = () => {
     password: yup
       .string()
       .required('Password is required')
-      .min(6, 'Password must be at least 6 characters')
+      .min(6, 'Password must be at least 6 characters'),
+    bloodType: yup.string()
+    .required('Blood type is required')
   });
 
   const initialValues = {
     fullName: '',
     email: '',
-    password: ''
+    password: '',
+    bloodType : ''
   }
 
-  const gettt = () => {
-    console.log('gettt')
-    setTimeout(() => {
-      console.log('gettt')
-      navigation.navigate('SignIn');
-    }, 1000)
+  const signUp = async (obj) => {
+    let res = await register(obj); 
+    // get only email from res.data
+    let email = res.data;
+
+    // let x = "test"
+    console.log("res is :", res.data.email);
+    navigation.navigate('SignIn', {
+      paramKey: res.data.email,
+    });
   }
 
 
@@ -62,7 +73,7 @@ export const SignUp = () => {
           <View style={tw`w-1/2 mb-3`}>
             <Text style={tw`text-3xl font-bold text-gray-700`}>Create New account</Text>
           </View>
-          <View style={tw`mb-20`}>
+          <View style={tw`mb-10`}>
             <View style={tw`flex flex-row`}>
               <View style={tw`h-2 w-10 rounded bg-red-400 mr-1`}></View>
               <View style={tw`h-2 w-3 rounded bg-gray-400 mr-1`}></View>
@@ -77,7 +88,7 @@ export const SignUp = () => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={async (values, {resetForm}) => {
-              console.log(' values isssss', values);
+              await signUp(values);
               resetForm({values: initialValues});
             }}
             >
