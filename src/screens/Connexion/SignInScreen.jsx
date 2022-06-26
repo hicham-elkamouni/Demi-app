@@ -12,7 +12,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { useNavigation } from '@react-navigation/native';
 import { SignInForm } from '../../components/SignInForm';
 
-export const SignIn = () => {
+export const SignIn = ({ route }) => {
   
     const navigation = useNavigation();
 
@@ -57,6 +57,10 @@ export const SignIn = () => {
             </View>
           </View>
 
+          <View>
+            <Text>passed from the second screen : {route.params.paramKey}</Text>
+          </View>
+
           <View style={tw``}>
           {/* FORMIK SECTION */}
 
@@ -72,7 +76,7 @@ export const SignIn = () => {
               <>
                 <KeyboardAwareScrollView enableOnAndroid={true}>
                   
-                  <SignInForm handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched}></SignInForm>
+                  <SignInForm handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} email={route.params.paramKey}></SignInForm>
 
                   <View style={tw`flex items-center mt-8`}>
                     <TouchableOpacity style={tw`w-full bg-red-400 p-4 flex items-center rounded-md`} onPress={handleSubmit}>
