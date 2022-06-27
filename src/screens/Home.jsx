@@ -6,8 +6,11 @@ import { Divider } from 'react-native-paper'
 import { PostCard } from '../components/PostCard.jsx'
 import { FloatingAction } from "react-native-floating-action";
 import { COLORS } from '../constants/theme'
+import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
+
+  const navigation = useNavigation();
 
   const actions = [
     {
