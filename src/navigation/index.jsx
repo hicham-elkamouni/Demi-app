@@ -1,25 +1,19 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "../screens/Home";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { Button, Platform, Text, TouchableOpacity, View } from "react-native";
 import { COLORS, FONTS } from "../constants/theme";
 import Profile from "../screens/Profile";
-import Options from "../screens/Options";
-import CartShop from "../screens/CartShop";
-
-
-import Pharmacies from "../screens/Pharmacies";
-import Food from "../screens/Food";
-import { FoodInfo } from "../screens/FoodInfo";
 
 import { TabBarIcon, MapButton } from "../components/index";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { MenuInfo } from "../screens/MenuInfo";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { Auth } from "../screens/Auth";
+import Home from "../screens/Home";
+import Search from "../screens/Search";
+import Homeee from "../screens/Homeee";
+import Settings from "../screens/Settings";
 import AddPost from "../screens/AddPost";
 import { Welcome , SignIn, SignUp } from "../screens/Connexion/Index";
 
@@ -54,8 +48,8 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Food"
-        component={Food}
+        name="Search"
+        component={Search}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
@@ -88,11 +82,11 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Commande"
-        component={CartShop}
+        component={Homeee}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
-              name={cart.total == 0 ? "Cart" : `Cart ${cart.total} dh`}
+              name={"Commandes"}
               source={require("../../assets/png/cart.png")}
               isFocuse={focused}
               lengthOfProducts
@@ -102,7 +96,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Settings"
-        component={Options}
+        component={Settings}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
