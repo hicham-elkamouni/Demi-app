@@ -9,11 +9,6 @@ import { useEffect } from 'react'
 const SignInForm = ({handleChange, handleBlur, values, errors, touched}) => {
 
 
-  useEffect(() => {
-    console.log("useEffssect is ",values);
-  } , [values])
-
-
   return (
     <>
 
