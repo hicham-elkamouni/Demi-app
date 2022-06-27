@@ -24,12 +24,6 @@ const SignUpForm = ({handleChange, handleBlur, values, errors, touched}) => {
   ];
 
 
-  const placeholder = {
-    label: 'Select your blood type',
-    value: null,
-    color: '#4b5563',
-  };
-
 
   return (
     <>
@@ -42,9 +36,9 @@ const SignUpForm = ({handleChange, handleBlur, values, errors, touched}) => {
                 label="Full name"
                 placeholder='Enter your FullName'
                 mode="outlined"
-                outlineColor={COLORS.gray}
-                selectionColor={COLORS.gray}
-                activeOutlineColor={COLORS.gray}
+                outlineColor={COLORS.green}
+                selectionColor={COLORS.green}
+                activeOutlineColor={COLORS.green}
                 error={errors.fullName && touched.fullName}
                 style={tw`mb-2`}
             /> 
@@ -58,9 +52,9 @@ const SignUpForm = ({handleChange, handleBlur, values, errors, touched}) => {
                 label="email"
                 placeholder='Enter your email'
                 mode="outlined"
-                outlineColor={COLORS.gray}
-                selectionColor={COLORS.gray}
-                activeOutlineColor={COLORS.gray}
+                outlineColor={COLORS.green}
+                selectionColor={COLORS.green}
+                activeOutlineColor={COLORS.green}
                 error={errors.email && touched.email}
                 style={tw`mb-2`}
             />
@@ -75,9 +69,9 @@ const SignUpForm = ({handleChange, handleBlur, values, errors, touched}) => {
                 type="password"
                 placeholder='Enter your password'
                 mode="outlined"
-                outlineColor={COLORS.gray}
-                selectionColor={COLORS.gray}
-                activeOutlineColor={COLORS.gray}
+                outlineColor={COLORS.green}
+                selectionColor={COLORS.green}
+                activeOutlineColor={COLORS.green}
                 error={errors.password && touched.password}
                 secureTextEntry={true}
                 style={tw`mb-2`}
@@ -85,65 +79,71 @@ const SignUpForm = ({handleChange, handleBlur, values, errors, touched}) => {
                 
                 {errors.password && touched.password ? ( <Text style={tw`text-red-500 `}>{errors.password}</Text> ) : null}
 
-                    {/* FIRST PART */}
+                  {/* FIRST PART */}
+                  <RadioButton.Group 
+                  onValueChange={handleChange('bloodType')}
+                  value={values.bloodType}
+                  >
+                    <View style={tw`flex flex-row justify-around`}>
+                        
+                        <View style={tw`flex flex-row items-center`}>
+                          <RadioButton.Item
+                            value={bloodTypes[0].value}
+                            label={bloodTypes[0].label}
+                            />
+                        </View>
+                        <View style={tw`flex flex-row items-center`}>
+                          <RadioButton.Item
+                            value={bloodTypes[1].value}
+                            label= {bloodTypes[1].label}
+                          />
+                        </View>
+                        <View style={tw`flex flex-row items-center`}>
+                          <RadioButton.Item
+                            value={bloodTypes[2].value}
+                            label={bloodTypes[2].label}
+                            />
+                        </View>
+                        <View style={tw`flex flex-row items-center`}>
+                          <RadioButton.Item
+                            value={bloodTypes[3].value}
+                            label={bloodTypes[3].label}
+                          />
+                        </View>
+                    </View>
+
                     <View style={tw`flex flex-row justify-around`}>
                       
-                      {/* {
-                        bloodTypes.map((bloodType, index) => {
-                          return (
-                            <View style={tw`flex flex-row items-center`}>
-                              <RadioButton
-                                key={index}
-                                value={bloodType.value}
-                                label={bloodType.label}
-                                onPress={() => setBloodType(bloodType.value)}
-                                checked={bloodType.value === bloodType}
-                              />
-                              <Text style={tw`text-lg`}>{bloodType.value}</Text>
-                            </View>
-                          )
-                          }
-                        )
-                      } */}
-                      
                         <View style={tw`flex flex-row items-center`}>
-                          <RadioButton
-                            value={bloodTypes[0].value}
-                            status={ bloodType === 'A+' ? 'checked' : 'unchecked' }
-                            onPress={() => setBloodType('A+')}
+                          <RadioButton.Item
+                            value={bloodTypes[4].value}
+                            label={bloodTypes[4].label}
                             />
-                          <Text style={tw`text-lg`}>A+</Text>
                         </View>
                         <View style={tw`flex flex-row items-center`}>
-                          <RadioButton
-                            value={bloodTypes[1].value}
-                            status={ bloodType === 'A-' ? 'checked' : 'unchecked' }
-                            onPress={() => setBloodType('A-')}
+                          <RadioButton.Item
+                            value={bloodTypes[5].value}
+                            label= {bloodTypes[5].label}
                           />
-                          <Text style={tw`text-lg`}>A-</Text>
                         </View>
                         <View style={tw`flex flex-row items-center`}>
-                          <RadioButton
-                            value={bloodTypes[2].value}
-                            status={ bloodType === 'B+' ? 'checked' : 'unchecked' }
-                            onPress={() => setBloodType('B+')}
+                          <RadioButton.Item
+                            value={bloodTypes[6].value}
+                            label={bloodTypes[6].label}
                             />
-                          <Text style={tw`text-lg`}>B+</Text>
                         </View>
                         <View style={tw`flex flex-row items-center`}>
-                          <RadioButton
-                            value={bloodTypes[3].value}
-                            status={ bloodType === 'B-' ? 'checked' : 'unchecked' }
-                            onPress={() => setBloodType('B-')}
+                          <RadioButton.Item
+                            value={bloodTypes[7].value}
+                            label={bloodTypes[7].label}
                           />
-                          <Text style={tw`text-lg`}>B-</Text>
                         </View>
-                  </View>
+                    </View>
 
                   {/* SECOND PART */}
-                    <View style={tw`flex flex-row justify-around`}>
+                    {/* <View style={tw`flex flex-row justify-around`}>
                         <View style={tw`flex flex-row items-center`}>
-                          <RadioButton
+                          <RadioButton.Item
                             value={bloodTypes[4].value}
                             status={ bloodType === 'AB+' ? 'checked' : 'unchecked' }
                             onPress={() => setBloodType('AB+')}
@@ -151,7 +151,7 @@ const SignUpForm = ({handleChange, handleBlur, values, errors, touched}) => {
                           <Text style={tw`text-lg`}>AB+</Text>
                         </View>
                         <View style={tw`flex flex-row items-center`}>
-                          <RadioButton
+                          <RadioButton.Item
                             value={bloodTypes[5].value}
                             status={ bloodType === 'AB-' ? 'checked' : 'unchecked' }
                             onPress={() => setBloodType('AB-')}
@@ -159,7 +159,7 @@ const SignUpForm = ({handleChange, handleBlur, values, errors, touched}) => {
                           <Text style={tw`text-lg`}>AB-</Text>
                         </View>
                         <View style={tw`flex flex-row items-center`}>
-                          <RadioButton
+                          <RadioButton.Item
                             value={bloodTypes[6].value}
                             status={ bloodType === 'O+' ? 'checked' : 'unchecked' }
                             onPress={() => setBloodType('O+')}
@@ -167,7 +167,7 @@ const SignUpForm = ({handleChange, handleBlur, values, errors, touched}) => {
                           <Text style={tw`text-lg`}>O+</Text>
                         </View>
                         <View style={tw`flex flex-row items-center`}>
-                          <RadioButton
+                          <RadioButton.Item
                             value={bloodTypes[7].value}
                             status={ bloodType === 'O-' ? 'checked' : 'unchecked' }
                             onPress={() => setBloodType('O-')}
@@ -175,7 +175,9 @@ const SignUpForm = ({handleChange, handleBlur, values, errors, touched}) => {
                           <Text style={tw`text-lg`}>O-</Text>
                         </View>
                     
-                  </View>
+                    </View> */}
+
+                  </RadioButton.Group>
               
               </View>
     </>
@@ -183,3 +185,22 @@ const SignUpForm = ({handleChange, handleBlur, values, errors, touched}) => {
 }
 
 export { SignUpForm }
+
+
+    {/* {
+      bloodTypes.map((bloodType, index) => {
+        return (
+          <View style={tw`flex flex-row items-center`}>
+            <RadioButton
+              key={index}
+              value={bloodType.value}
+              label={bloodType.label}
+              onPress={() => setBloodType(bloodType.value)}
+              checked={bloodType.value === bloodType}
+            />
+            <Text style={tw`text-lg`}>{bloodType.value}</Text>
+          </View>
+        )
+        }
+      )
+    } */}
