@@ -11,10 +11,16 @@ import { COLORS } from '../../constants/theme'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useNavigation } from '@react-navigation/native';
 import { SignInForm } from '../../components/SignInForm';
+import { useLoginMutation } from '../../app/features/donator/donatorApi';
+import { useDispatch } from "react-redux"
+import { setToken } from "../../app/features/donator/userSlice"
 
-export const SignIn = ({ route }) => {
+
+export const SignIn = ({  }) => {
   
     const navigation = useNavigation();
+    let dispatch = useDispatch()
+    const [ login, { data, loading, error }] = useLoginMutation();
 
   const validationSchema = yup.object().shape({
     email: yup
@@ -32,9 +38,23 @@ export const SignIn = ({ route }) => {
     password: ''
   }
 
-  // useEffect(() => {
-  //   console.log(values);
-  // })
+  // api for login
+  const signIn = async (obj) => {
+    try{
+
+      console.log("sign in obj is :", obj);
+      let res = await login(obj);
+      if (res.data) {
+        console.log("res is :", res.data.token);
+        await dispatch(setToken({userToken:res.data.token}))
+        navigation.navigate('Root');
+      }
+    }catch(e){
+      console.log("error is :", e);
+    }
+
+  }
+
 
   return (
     
@@ -56,11 +76,7 @@ export const SignIn = ({ route }) => {
               <View style={tw`h-2 w-3 rounded bg-gray-400`}></View>
             </View>
           </View>
-
-          <View>
-            <Text>passed from the second screen : {route.params.paramKey}</Text>
-          </View>
-
+  
           <View style={tw``}>
           {/* FORMIK SECTION */}
 
@@ -68,7 +84,7 @@ export const SignIn = ({ route }) => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={async (values, {resetForm}) => {
-              console.log(' values isssss', values);
+              signIn(values);
               resetForm({values: initialValues});
             }}
             >
@@ -76,7 +92,7 @@ export const SignIn = ({ route }) => {
               <>
                 <KeyboardAwareScrollView enableOnAndroid={true}>
                   
-                  <SignInForm handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} email={route.params.paramKey}></SignInForm>
+                  <SignInForm handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched}></SignInForm>
 
                   <View style={tw`flex items-center mt-8`}>
                     <TouchableOpacity style={tw`w-full bg-red-400 p-4 flex items-center rounded-md`} onPress={handleSubmit}>
